@@ -1,0 +1,43 @@
+{
+  "name": "attributehelper",
+  "widgetName": "AttributeHelper",
+  "version": "1.0.0",
+  "description": "Set attributes on elements based on your context",
+  "copyright": "Mendix 2019",
+  "author": "Jelte Lagendijk <jelte.lagendijk@mendix.com>",
+  "config": {
+    "widgetPath": "/Volumes/[C] Windows 10.hidden/Projects/MendixProjects/AttributeHelperWidget-main/widgets",
+    "projectPath": "/Volumes/[C] Windows 10.hidden/Projects/MendixProjects/AttributeHelperWidget-main/",
+    "mendixHost": "http://10.211.55.3:8080",
+    "_widgetPath": "./dist/MxTestProject/widgets",
+    "_projectPath": "./dist/MxTestProject/",
+    "_mendixHost": "http://localhost:8080",
+    "developmentPort": "3000"
+  },
+  "packagePath": "mendix",
+  "scripts": {
+    "start": "concurrently \"pluggable-widgets-tools start:server --open\" \"npm:dev\"",
+    "dev": "pluggable-widgets-tools start:ts",
+    "build": "pluggable-widgets-tools build:ts",
+    "lint": "pluggable-widgets-tools lint",
+    "lint:fix": "pluggable-widgets-tools lint:fix",
+    "prerelease": "npm run lint",
+    "release": "pluggable-widgets-tools release:ts"
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@mendix/pluggable-widgets-tools": "^8.2.0",
+    "@types/big.js": "^4.0.5",
+    "@types/classnames": "^2.2.4",
+    "@types/jest": "^24.0.0",
+    "@types/react": "^16.8.17",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-test-renderer": "^16.8.1"
+  },
+  "dependencies": {
+    "big.js": "^5.2.2",
+    "cash-dom": "^4.1.5",
+    "classnames": "^2.2.6",
+    "tsdom": "^0.6.9"
+  }
+}

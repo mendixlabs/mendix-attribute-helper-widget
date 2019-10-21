@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="mendix.attributehelper.AttributeHelper" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Attribute Helper</name>
+    <description>Set attributes on elements based on your context</description>
+    <icon/>
+    <properties>
+        <propertyGroup caption="General">
+            <property key="transformations" type="object" isList="true" required="true">
+                <caption>Transformations</caption>
+                <description></description>
+                <properties>
+                    <!-- Data -->
+                    <property key="transformAttribute" type="string" required="true">
+                        <caption>HTML Attribute</caption>
+                        <category>Data</category>
+                        <description>Note: 'style' and 'class' are prohibited and will be ignored</description>
+                    </property>
+                    <property key="transformTextTemplate" type="textTemplate" required="true">
+                        <caption>Value</caption>
+                        <category>Data</category>
+                        <description>Template for the value. In this you can use a text-template where you have access to values of attributes in the context object.</description>
+                    </property>
+                    <!-- Elements -->
+                    <property key="transformElement" type="enumeration" defaultValue="general">
+                        <caption>Element</caption>
+                        <category>Elements</category>
+                        <description>You can choose the following options:
+
+1. General: Use the general selector defined in the 'Selector' tab in the widget.
+2. Parent: Set attribute on the direct parent of the widget.
+3. Siblings: Set attribute on the direct siblings of the widget.</description>
+                        <enumerationValues>
+                             <enumerationValue key="general">General</enumerationValue>
+                             <enumerationValue key="parent">Parent</enumerationValue>
+                             <enumerationValue key="sibling">Sibling</enumerationValue>
+                        </enumerationValues>
+                    </property>
+                    <property key="transformSiblingFilter" type="string" required="false">
+                        <caption>Element Sibling filter</caption>
+                        <category>Elements</category>
+                        <description>Filter the siblings on a class name (e.g. '.mx-button')</description>
+                    </property>
+                    <property key="transformSiblingSubFilter" type="string" required="false">
+                        <caption>Element Sibling child filter</caption>
+                        <category>Elements</category>
+                        <description>Filter the children of a sibling on a class name(e.g. '.mx-button'). This is useful when you want to set an attribute on a specific element in the sibling.</description>
+                    </property>
+                    <property key="transformParentsSelector" type="string" required="false">
+                        <caption>Element Parents selector</caption>
+                        <category>Elements</category>
+                        <description>While using 'Parent' as the Element, you can add a class name (e.g. '.mx-data-view') as the parent selector. The widget will traverse up, so you can set an attribute on a parent. When it does not find one using the selector, it will use the direct parent.</description>
+                    </property>
+                </properties>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Selector">
+            <property key="selectorSelection" type="enumeration" defaultValue="parent">
+                <caption>Selector</caption>
+                <description>Select to which elements the attributes should be applied. Please note that any attribute that is set in Transformations and does not use 'General' in Elements, will ignore this selector.</description>
+                <enumerationValues>
+                     <enumerationValue key="parent">Parent</enumerationValue>
+                     <enumerationValue key="sibling">Sibling</enumerationValue>
+                </enumerationValues>
+            </property>
+            <property key="selectorSiblingFilter" type="string" required="false">
+                <caption>Sibling filter</caption>
+                <description>Filter the siblings on a class name (e.g. '.mx-button')</description>
+            </property>
+            <property key="selectorSiblingSubFilter" type="string" required="false">
+                <caption>Sibling child filter</caption>
+                <description>Filter the children of a sibling on a class name(e.g. '.mx-button'). This is useful when you want to set an attribute on a specific element within the sibling.</description>
+            </property>
+            <property key="selectorParentsSelector" type="string" required="false">
+                <caption>Parents selector</caption>
+                <description>While using 'Parent' as the Selector, you can add a class name (e.g. '.mx-data-view') as the parent selector. The widget will traverse up, so you can set an attribute on a parent. When it does not find one using the selector, it will use the direct parent.</description>
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>
