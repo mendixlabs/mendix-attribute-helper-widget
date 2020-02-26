@@ -1,9 +1,11 @@
+[![Apache License](https://img.shields.io/badge/license-Apache%202.0-orange.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Dependencies](https://david-dm.org/JelteMX/mendix-attribute-helper-widget.svg)]([https://david-dm.org/JelteMX/mendix-attribute-helper-widget](https://david-dm.org/JelteMX/mendix-attribute-helper-widget))
 [![DevDependencies](https://david-dm.org/JelteMX/mendix-attribute-helper-widget/dev-status.svg)]([https://david-dm.org/JelteMX/mendix-attribute-helper-widget?type=dev](https://david-dm.org/JelteMX/mendix-attribute-helper-widget?type=dev))
 [![Support](https://img.shields.io/badge/Support-Community%20(no%20active%20support)-orange.svg)](https://docs.mendix.com/developerportal/app-store/app-store-content-support)
 [![Studio](https://img.shields.io/badge/Studio%20version-8.0%2B-blue.svg)](https://appstore.home.mendix.com/link/modeler/)
-![GitHub release](https://img.shields.io/github/release/JelteMX/mendix-attribute-helper-widget)
-![GitHub issues](https://img.shields.io/github/issues/JelteMX/mendix-attribute-helper-widget)
+[![GitHub release](https://img.shields.io/github/release/JelteMX/mendix-attribute-helper-widget)](https://github.com/JelteMX/mendix-attribute-helper-widget/releases/latest)
+[![GitHub issues](https://img.shields.io/github/issues/JelteMX/mendix-attribute-helper-widget)](https://github.com/JelteMX/mendix-attribute-helper-widget/issues)
+[![DeepScan grade](https://deepscan.io/api/teams/7221/projects/9848/branches/130760/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=7221&pid=9848&bid=130760)
 
 # Attribute Helper Widget
 
@@ -21,6 +23,7 @@ A widget that sets attributes on elements, based on your attribute values in you
     - Select a (custom) HTML-attribute like `data-custom-attribute`
     - Select a text-value for this attribute, where you can use attribute values from you context object. For example `{1}`, where the first argument will be the String value `Name` in your Mendix object
     - The widget will set the following attribute on the selected element(s): `data-custom-attribute="Value"`. This can then be used in styling your application.
+    - You can manipulate the value before you set it: Remove spaces, make it Uppercase/Lowercase
 
 ## Alternatives
 

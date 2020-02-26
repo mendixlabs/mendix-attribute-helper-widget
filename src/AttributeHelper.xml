@@ -23,6 +23,21 @@
                         <category>Data</category>
                         <description>Template for the value. In this you can use a text-template where you have access to values of attributes in the context object.</description>
                     </property>
+                    <property key="transformRemoveSpaces" type="boolean" defaultValue="false">
+                        <caption>Remove spaces</caption>
+                        <category>Data</category>
+                        <description>Remove any spaces from the value.</description>
+                    </property>
+                    <property key="transformTextTransform" type="enumeration" defaultValue="none">
+                        <caption>Transform</caption>
+                        <category>Data</category>
+                        <description>Text transformation can be used when you need to make the text Uppercase/Lowercase</description>
+                        <enumerationValues>
+                             <enumerationValue key="none">None</enumerationValue>
+                             <enumerationValue key="uppercase">Uppercase</enumerationValue>
+                             <enumerationValue key="lowercase">Lowercase</enumerationValue>
+                        </enumerationValues>
+                    </property>
                     <!-- Elements -->
                     <property key="transformElement" type="enumeration" defaultValue="general">
                         <caption>Element</caption>

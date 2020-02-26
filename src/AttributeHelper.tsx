@@ -45,7 +45,9 @@ class AttributeHelper extends Component<AttributeHelperContainerProps> {
                 transformSiblingFilter,
                 transformTextTemplate,
                 transformSiblingSubFilter,
-                transformParentsSelector
+                transformParentsSelector,
+                transformRemoveSpaces,
+                transformTextTransform
             } = transformation;
             if (transformTextTemplate.status !== "available") {
                 return;
@@ -54,9 +56,22 @@ class AttributeHelper extends Component<AttributeHelperContainerProps> {
                 console.warn(`Widget tries to change ${transformAttribute} attribute, this is prohibited`);
                 return;
             }
+
+            let value = transformTextTemplate.value;
+
+            if (transformRemoveSpaces) {
+                value = value.replace(/\s/g, "");
+            }
+
+            if (transformTextTransform === "lowercase") {
+                value = value.toLowerCase();
+            } else if (transformTextTransform === "uppercase") {
+                value = value.toUpperCase();
+            }
+
             if ((transformElement === "general" && selectorSelection === "parent") || transformElement === "parent") {
                 const selector = transformElement === "general" ? selectorParentsSelector : transformParentsSelector;
-                this.handleParent($el, transformAttribute, transformTextTemplate.value, selector);
+                this.handleParent($el, transformAttribute, value, selector);
             } else if (
                 (transformElement === "general" && selectorSelection === "sibling") ||
                 transformElement === "sibling"
@@ -64,7 +79,7 @@ class AttributeHelper extends Component<AttributeHelperContainerProps> {
                 this.handleSiblings(
                     $el,
                     transformAttribute,
-                    transformTextTemplate.value,
+                    value,
                     transformElement === "general" ? selectorSiblingFilter : transformSiblingFilter,
                     transformElement === "general" ? selectorSiblingSubFilter : transformSiblingSubFilter
                 );
