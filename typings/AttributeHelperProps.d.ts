@@ -14,11 +14,15 @@ interface CommonProps {
     tabIndex: number;
 }
 
+export type TransformTextTransformEnum = "none" | "uppercase" | "lowercase";
+
 export type TransformElementEnum = "general" | "parent" | "sibling";
 
 export interface TransformationsType {
     transformAttribute: string;
     transformTextTemplate: DynamicValue<string>;
+    transformRemoveSpaces: boolean;
+    transformTextTransform: TransformTextTransformEnum;
     transformElement: TransformElementEnum;
     transformSiblingFilter?: string;
     transformSiblingSubFilter?: string;
@@ -30,6 +34,8 @@ export type SelectorSelectionEnum = "parent" | "sibling";
 export interface TransformationsPreviewType {
     transformAttribute: string;
     transformTextTemplate: string;
+    transformRemoveSpaces: boolean;
+    transformTextTransform: TransformTextTransformEnum;
     transformElement: TransformElementEnum;
     transformSiblingFilter?: string;
     transformSiblingSubFilter?: string;
@@ -39,6 +45,8 @@ export interface TransformationsPreviewType {
 export interface TransformationsVisibilityType {
     transformAttribute: boolean;
     transformTextTemplate: boolean;
+    transformRemoveSpaces: boolean;
+    transformTextTransform: boolean;
     transformElement: boolean;
     transformSiblingFilter: boolean;
     transformSiblingSubFilter: boolean;
@@ -53,7 +61,10 @@ export interface AttributeHelperContainerProps extends CommonProps {
     selectorParentsSelector?: string;
 }
 
-export interface AttributeHelperPreviewProps extends CommonProps {
+export interface AttributeHelperPreviewProps {
+    class: string;
+    style: string;
+    styleObject: CSSProperties;
     transformations: TransformationsPreviewType[];
     selectorSelection: SelectorSelectionEnum;
     selectorSiblingFilter?: string;

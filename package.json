@@ -1,17 +1,14 @@
 {
   "name": "attributehelper",
   "widgetName": "AttributeHelper",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Set attributes on elements based on your context",
   "copyright": "Mendix 2019",
   "author": "Jelte Lagendijk <jelte.lagendijk@mendix.com>",
   "config": {
-    "widgetPath": "/Volumes/[C] Windows 10.hidden/Projects/MendixProjects/AttributeHelperWidget-main/widgets",
-    "projectPath": "/Volumes/[C] Windows 10.hidden/Projects/MendixProjects/AttributeHelperWidget-main/",
-    "mendixHost": "http://10.211.55.3:8080",
-    "_widgetPath": "./dist/MxTestProject/widgets",
-    "_projectPath": "./dist/MxTestProject/",
-    "_mendixHost": "http://localhost:8080",
+    "widgetPath": "./dist/MxTestProject/widgets",
+    "projectPath": "./dist/MxTestProject/",
+    "mendixHost": "http://windows:8080",
     "developmentPort": "3000"
   },
   "packagePath": "mendix",
@@ -26,7 +23,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@mendix/pluggable-widgets-tools": "^8.2.0",
+    "@mendix/pluggable-widgets-tools": "^8.6.0",
     "@types/big.js": "^4.0.5",
     "@types/classnames": "^2.2.4",
     "@types/jest": "^24.0.0",
