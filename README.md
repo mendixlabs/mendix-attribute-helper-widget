@@ -21,6 +21,7 @@ A widget that sets attributes on elements, based on your attribute values in you
     - Select a (custom) HTML-attribute like `data-custom-attribute`
     - Select a text-value for this attribute, where you can use attribute values from you context object. For example `{1}`, where the first argument will be the String value `Name` in your Mendix object
     - The widget will set the following attribute on the selected element(s): `data-custom-attribute="Value"`. This can then be used in styling your application.
+    - You can manipulate the value before you set it: Remove spaces, make it Uppercase/Lowercase
 
 ## Alternatives
 
