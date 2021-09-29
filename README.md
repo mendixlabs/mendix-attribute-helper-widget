@@ -25,6 +25,12 @@ A widget that sets attributes on elements, based on your attribute values in you
     - The widget will set the following attribute on the selected element(s): `data-custom-attribute="Value"`. This can then be used in styling your application.
     - You can manipulate the value before you set it: Remove spaces, make it Uppercase/Lowercase
 
+## Compatibility
+
+Version `2.0.0` was tested (and worked) in the following MX versions:
+- 8.0.0
+- 8.18.9
+- 9.4.0
 ## Alternatives
 
 The [Mendix AppStore](https://appstore.home.mendix.com/) provides a variety of widgets that do similar things. Most of them do DOM-manipulation on classes, but this is something that should be left to the Mendix Runtime as we're moving to React. The Attribute Helper Widget tries to combine the best of all alternatives, minus setting classes on HTML Elements. Feel free to use an alternative, or request a feature request on this widget.

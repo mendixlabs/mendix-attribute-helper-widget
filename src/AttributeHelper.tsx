@@ -1,130 +1,42 @@
-import { Component, ReactNode, createElement } from "react";
-import { findDOMNode } from "react-dom";
-import $, { Cash } from "cash-dom";
-import { hot } from "react-hot-loader/root";
+import "mutationobserver-polyfill";
+import { createElement, FC, useRef, useEffect, useCallback } from "react";
+import $ from "cash-dom";
+
+import { useMutationObserver, getRefElement } from "./hooks/mutationObserver";
 import { AttributeHelperContainerProps } from "../typings/AttributeHelperProps";
 
 import "./ui/AttributeHelper.css";
 
-const PROHIBITED_ATTRIBUTES = ["class", "style", "widgetid", "data-mendix-id"];
+import { doTransformations } from "./transformer";
 
-class AttributeHelper extends Component<AttributeHelperContainerProps> {
-    domNode: HTMLElement | null = null;
+const AttributeHelper: FC<AttributeHelperContainerProps> = props => {
+    const elRef = useRef<HTMLDivElement>(null);
+    const bodyRef = getRefElement(document.body);
 
-    render(): ReactNode {
-        // We'll render an element, as we are using the dom
-        return <div className="attributeHelper" />;
-    }
-
-    componentDidUpdate(): void {
-        const domNode = findDOMNode(this);
-
-        if (domNode instanceof Element) {
-            this.domNode = domNode as HTMLElement;
-            this.doTransformations();
+    const runTransformer = useCallback(() => {
+        if (elRef.current) {
+            const domNode = $(elRef.current);
+            doTransformations(domNode, props);
         }
-    }
+    }, [elRef.current, props]);
 
-    private doTransformations(): void {
-        const {
-            transformations,
-            selectorSiblingFilter,
-            selectorSelection,
-            selectorSiblingSubFilter,
-            selectorParentsSelector
-        } = this.props;
-        if (this.domNode === null) {
-            return;
+    const handleMutations = useCallback(() => {
+        if (props.miscUseMutationObserver) {
+            runTransformer();
         }
-        const $el = $(this.domNode);
+    }, []);
 
-        transformations.forEach(transformation => {
-            const {
-                transformAttribute,
-                transformElement,
-                transformSiblingFilter,
-                transformTextTemplate,
-                transformSiblingSubFilter,
-                transformParentsSelector,
-                transformRemoveSpaces,
-                transformTextTransform
-            } = transformation;
-            if (transformTextTemplate.status !== "available") {
-                return;
-            }
-            if (PROHIBITED_ATTRIBUTES.indexOf(transformAttribute) !== -1) {
-                console.warn(`Widget tries to change ${transformAttribute} attribute, this is prohibited`);
-                return;
-            }
+    useMutationObserver({
+        target: bodyRef,
+        options: { attributes: true, childList: true },
+        callback: handleMutations
+    });
 
-            let value = transformTextTemplate.value;
+    useEffect(() => {
+        runTransformer();
+    }, [elRef.current, props]);
 
-            if (transformRemoveSpaces) {
-                value = value.replace(/\s/g, "");
-            }
+    return <div ref={elRef} className={"attributeHelper"} />;
+};
 
-            if (transformTextTransform === "lowercase") {
-                value = value.toLowerCase();
-            } else if (transformTextTransform === "uppercase") {
-                value = value.toUpperCase();
-            }
-
-            if ((transformElement === "general" && selectorSelection === "parent") || transformElement === "parent") {
-                const selector = transformElement === "general" ? selectorParentsSelector : transformParentsSelector;
-                this.handleParent($el, transformAttribute, value, selector);
-            } else if (
-                (transformElement === "general" && selectorSelection === "sibling") ||
-                transformElement === "sibling"
-            ) {
-                this.handleSiblings(
-                    $el,
-                    transformAttribute,
-                    value,
-                    transformElement === "general" ? selectorSiblingFilter : transformSiblingFilter,
-                    transformElement === "general" ? selectorSiblingSubFilter : transformSiblingSubFilter
-                );
-            }
-        });
-    }
-
-    private handleSiblings(
-        $el: Cash,
-        attributeName: string,
-        attributeValue: string,
-        siblingFilter?: string,
-        siblingSubFilter?: string
-    ): void {
-        if (!$el) {
-            return;
-        }
-        const $generalSiblings = $el.siblings(siblingFilter ? siblingFilter : undefined);
-        if ($generalSiblings.length === 0) {
-            return;
-        }
-        if (typeof siblingSubFilter === "undefined" || siblingSubFilter === "") {
-            $generalSiblings.attr(attributeName, attributeValue);
-        } else {
-            $generalSiblings.each(function() {
-                $(this)
-                    .find(siblingSubFilter)
-                    .attr(attributeName, attributeValue);
-            });
-        }
-    }
-
-    private handleParent($el: Cash, attributeName: string, attributeValue: string, parentSelector?: string): void {
-        if (!$el) {
-            return;
-        }
-        if (parentSelector) {
-            const closestParent = $el.closest(parentSelector);
-            if (closestParent.length === 1) {
-                closestParent.attr(attributeName, attributeValue);
-                return;
-            }
-        }
-        $el.parent().attr(attributeName, attributeValue);
-    }
-}
-
-export default hot(AttributeHelper);
+export default AttributeHelper;

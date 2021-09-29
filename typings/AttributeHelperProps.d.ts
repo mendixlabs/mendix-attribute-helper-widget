@@ -59,6 +59,7 @@ export interface AttributeHelperContainerProps extends CommonProps {
     selectorSiblingFilter?: string;
     selectorSiblingSubFilter?: string;
     selectorParentsSelector?: string;
+    miscUseMutationObserver: boolean;
 }
 
 export interface AttributeHelperPreviewProps {
@@ -70,6 +71,7 @@ export interface AttributeHelperPreviewProps {
     selectorSiblingFilter?: string;
     selectorSiblingSubFilter?: string;
     selectorParentsSelector?: string;
+    miscUseMutationObserver: boolean;
 }
 
 export interface VisibilityMap {
@@ -78,4 +80,5 @@ export interface VisibilityMap {
     selectorSiblingFilter: boolean;
     selectorSiblingSubFilter: boolean;
     selectorParentsSelector: boolean;
+    miscUseMutationObserver: boolean;
 }

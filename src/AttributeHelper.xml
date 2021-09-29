@@ -93,5 +93,11 @@
                 <description>While using 'Parent' as the Selector, you can add a class name (e.g. '.mx-data-view') as the parent selector. The widget will traverse up, so you can set an attribute on a parent. When it does not find one using the selector, it will use the direct parent.</description>
             </property>
         </propertyGroup>
+        <propertyGroup caption="Misc">
+            <property key="miscUseMutationObserver" type="boolean" defaultValue="false">
+                <caption>Use Mutation Observer</caption>
+                <description>This will enable a mutation observer that will trigger everytime the page changes. Please only use this when needed, because it can have a performance impact</description>
+            </property>
+        </propertyGroup>
     </properties>
 </widget>
